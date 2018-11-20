@@ -1,3 +1,3 @@
-<?
+<?php
 
-echo "Welcome to wealth engine!";
+echo "Hello World";

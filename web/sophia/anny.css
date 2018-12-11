@@ -1,0 +1,44 @@
+.responsive{
+	width: 100%;
+	height: auto;
+	opacity: 0.5;
+}
+
+.container{
+	position: relative;
+	text-align: center;
+}
+
+.pic_centered{
+	position:absolute;
+	top:50%;
+	left:20%;
+	font-size: 30px;
+
+}
+
+.sticky{
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* Style the navbar */
+#navbar_top {
+  overflow: hidden;
+  position: fixed;
+  top:0;
+  width: 100%;
+  z-index: 2;
+}
+
+.first_content{
+	padding-top: 100px;
+}
+
+.we_content{
+	z-index: 1;
+}
+
+
+

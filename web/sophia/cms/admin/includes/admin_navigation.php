@@ -16,10 +16,10 @@
                 
             
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php =$_SESSION['user_firstname'] ?> <?php =$_SESSION['user_lastname'] ?> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user"></i> <?php echo $_SESSION['user_firstname']; ?> <?php echo $_SESSION['user_lastname']; ?> <b class="caret"></b>
+                    </a>
                     <ul class="dropdown-menu">
-                        
-                       
                         <li class="divider"></li>
                         <li>
                             <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
@@ -33,7 +33,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a href="portfolio.php"><i class="fa fa-fw fa-dashboard"></i> Portfolio</a>
                     </li>
 <!--
                     <li>

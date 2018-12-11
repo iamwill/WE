@@ -16,7 +16,7 @@
                 
             
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php =$_SESSION['user_firstname'] ?> <?php =$_SESSION['user_lastname'] ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         
                        

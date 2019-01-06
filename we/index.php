@@ -16,9 +16,15 @@
     <!-- Custom styles for this template -->
     <link href="anny.css" rel="stylesheet">
     <script type="text/javascript" src="anny.js"></script>
+
+    
   </head>
 
   <body>
+  
+  <div class="popup" onclick="myFunction()">Click me!
+  <span class="popuptext" id="myPopup">Popup text...</span>
+</div>
 
 
     
@@ -27,10 +33,12 @@
       <h5 class="my-0 mr-md-auto font-weight-normal">Wealth Engine</h5>
 
       <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="#">Financial Tools</a>
+        <a class="p-2 text-dark" href="cms/form2/index.php">Take risk survey</a>
+<!--
         <a class="p-2 text-dark" href="#">Wealth Management</a>
         <a class="p-2 text-dark" href="#">About</a>
         <a class="p-2 text-dark" href="#">Resources</a>
+-->
       </nav>
       
       <a class="btn btn-outline-primary" href="cms/login/index_signup.php">Sign up </a>

@@ -36,8 +36,22 @@ include "../admin/functions.php";?>
     <![endif]-->
     
       <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      
+      
+      <style>
+          
+.wrapper {
+    text-align: center;
+}
+          
+          
+</style>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
  
 </head>
+
+
 
 
 <body>

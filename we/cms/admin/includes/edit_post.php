@@ -64,6 +64,10 @@ move_uploaded_file($post_image_temp, "../images/$post_image");
     
     $update_post = mysqli_query($connection,$query);
     confirmQuery($update_post);
+    
+    echo "<p class='bg-success'>Post Updated. <a href='../post.php?p_id={$the_post_id}'> View Posts</a> or
+    <a href='admin_post.php'> Edit More Posts </a>
+    </p>";
 }
 
 
@@ -136,9 +140,16 @@ move_uploaded_file($post_image_temp, "../images/$post_image");
     
     <div class="form-group">
       <label for="post_content"> Post Content </label>
-       <textarea class="form-control" name="post_content" id="" cols="30" rows="10">
+       <textarea class="form-control" name="post_content" id="editor" cols="30" rows="10">
             <?php echo $post_content; ?> 
        </textarea>
+       <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
         
     </div>
     

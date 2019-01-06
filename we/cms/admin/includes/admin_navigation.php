@@ -12,8 +12,10 @@
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-               <li><a href="index.php">HOME SITE</a></li>          
-                
+              
+               <li><a href="index.php">HOME SITE</a></li> 
+                &nbsp         
+                 <li><a href="../index.php">VIEW NEWS</a></li>   
             
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -49,6 +51,15 @@
                             <li>
                                 <a href="./admin_portfolios.php?source=">View all stocks</a>
                             </li>
+                            
+                            <li>
+                                <a href="./admin_uport.php?source=">View your holdings</a>
+                            </li>
+                            
+                             <li>
+                                <a href="./admin_portfolios.php?source=upload_stock">Upload stocks</a>
+                            </li>
+                            
                             <li>
                                 <a href="./admin_portfolios.php?source=add_stock">Add stocks</a>
                             </li>

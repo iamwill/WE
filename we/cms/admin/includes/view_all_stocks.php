@@ -2,13 +2,84 @@
 
 
 
-		<div class="limiter">
+<?php
+//if(isset($_POST['checkBoxArray'])){
+//    
+//    
+//    foreach($_POST['checkBoxArray'] as $postValueId){
+//        
+//       $bulk_options =  $_POST['bulk_options'];
+//        
+//        switch($bulk_options){
+//                
+////            case 'view_all_stocks':
+////                
+////                header("Location: admin_portfolios.php");            
+////                break;
+//                   
+//                case 'delete':  
+//                
+//                $query = "DELETE FROM properties WHERE symbol = '{$postValueId}' "; 
+//                $update_to_delete_status = mysqli_query($connection,$query);              
+//                confirmQuery($update_to_delete_status);  
+//                header("Location: admin_portfolios.php");
+//                break;              
+//        }
+//        
+//    }
+//    
+//}
+
+?>
+
+<form action="includes/process.php" method="post">
+
+<div id="bulkOptionsContainer" class="col-xs-4">
+    
+    <select class="form-control" name="bulk_options" id="">   
+        <option value="">Select Databases</option>
+<!--        <option value="view_all_stocks">View current holdings</option>-->      
+       
+        <?php 
+           
+                $query = "SELECT * FROM database_list";
+                $select_categories = mysqli_query($connection,$query);
+           
+                confirmQuery($select_categories);
+
+                while($row = mysqli_fetch_assoc($select_categories)){
+                $database_name =  $row['database_name'];  
+                    
+                echo "<option value='{$database_name}'>{$database_name}</option>";}                   
+           ?>
+        
+    </select>
+    
+</div>
+
+   
+
+
+
+<div class="col-xs-4">
+    
+    
+    <input type="submit" name="submit" class="btn btn-success" value="Apply">
+    <a class="btn btn-primary" href="./admin_portfolios.php?source=add_stock"> Add New</a>
+</div>
+   
+    <br>
+
+
+		<div class="limiter" style="padding-top: 30px">
 			<div class="wrap-table100">
 				<div class="table100 ver1 m-b-110">
 					<table data-vertable="ver1">
 						<thead>
 							<tr class="row100 head">
-								<th class="column100 column1" data-column="column1">User_id</th>
+							
+							<th class="column100 column2" data-column="column2"><input id="selectAllBoxes" type="checkbox"></th>
+							<th class="column100 column2" data-column="column2">NO.</th>
 								<th class="column100 column2" data-column="column2">Symbol</th>
 								<th class="column100 column3" data-column="column3">Quantity</th>
 								<th class="column100 column4" data-column="column4">Price</th>
@@ -30,17 +101,24 @@
 						<tbody>
 
 
+
 <?php
 
-    
+
+                            
+                            
+                            
+                            
+                            
     
 
 $query = "SELECT * FROM properties";
 $select_stocks = mysqli_query($connection,$query);
+$row_num = 1;
 
 while($row = mysqli_fetch_assoc($select_stocks)){
     
-$user_id =  $_SESSION['user_id'];
+
 $symbol =  $row['symbol'];
 $Quantity =  $row['Quantity'];
 $Price =  $row['Price'];
@@ -61,7 +139,7 @@ $MaxDD =  $row['MaxDD'];
 //Do some calculations here
 
 $Rfwd = $Pfwd / $P60 -1;
-$Rfwd = round($Rfwd,2);     
+
     
 //$R60_6 = $P60 / $P60_6 -1;
 //$R60 = $P60 / $P60_12 -1;
@@ -75,42 +153,59 @@ $delta_E = $Efwd - $Ettm;
 
 
 $PEG = (($P60/($delta_E * 100))<0)?10:$P60/($delta_E * 100);
-$PEG = round($PEG,2);    
+    
 
 
 $PE_fwd = ($P60/($Efwd)<0) ? 200 : $P60/$Efwd;
-$PE_fwd = round($PE_fwd,2);
+
     
 $SR_fwd = ((($Rfwd_adjusted-0.0225)/($SDfwd))<0)?0:(($Rfwd_adjusted-0.0225)/($SDfwd));
-$SR_fwd = round($SR_fwd,2);
-    
-$SR_fwd2DD = $SR_fwd / $MaxDD;
-$SR_fwd2DD = -1 * round($SR_fwd2DD,2);   
-$SR_fwd2PEG = (($SR_fwd / $PEG)<0)?0: $SR_fwd2PEG = $SR_fwd / $PEG;
-$SR_fwd2PEG = round($SR_fwd2PEG,2); 
 
-$MARF_fwd = $Rfwd_adjusted / $MaxDD;
-$MARF_fwd = -1 * round($MARF_fwd,2); 
-$MaxDD =  round($MaxDD,2);
+$SR_fwd2DD = -1 * $SR_fwd / $MaxDD; 
+$SR_fwd2PEG = (($SR_fwd / $PEG)<0)?0: $SR_fwd2PEG = $SR_fwd / $PEG;
+
+$MARF_fwd = -1 * $Rfwd_adjusted / $MaxDD;
+    
+
+$Price_p = round($Price,2);
+$Rfwd_adjusted_p = round($Rfwd_adjusted,2);
+$PEG_p = round($PEG,2);
+$PE_fwd_p = round($PE_fwd,2);
+$SR_fwd_p = round($SR_fwd,2);
+$SR_fwd2DD_p = round($SR_fwd2DD,2);
+$SR_fwd2PEG_p = round($SR_fwd2PEG,2);
+$SD_p = round($SD,2);
+$SDfwd_p = round($SDfwd,2);
+$MARF_fwd_p = round($MARF_fwd,2);
+$MaxDD_p = round($MaxDD,2);
+
     
 echo "<tr class='row100'>";
-      
-echo "<td class='column100 column1' data-column='column1'>{$user_id}</td>";
+
+
+    
+?>
+    
+    <td class="column100 column2" data-column="column2"><input class="checkBoxes" type="checkbox" name="checkBoxArray[]" value=" <?php echo $symbol; ?>"></td> 
+    
+     <?php
+     
+echo "<td class='column100 column2' data-column='column2'>{$row_num}</td>";
 echo "<td class='column100 column2' data-column='column2'>{$symbol}</td>";
 echo "<td class='column100 column3' data-column='column3'>{$Quantity}</td>";
-echo "<td class='column100 column4' data-column='column4'>{$Price}</td>";
-echo "<td class='column100 column5' data-column='column5'>{$Rfwd_adjusted}</td>";
-echo "<td class='column100 column6' data-column='column6'>{$PEG}</td>";
-echo "<td class='column100 column7' data-column='column7'>{$PE_fwd}</td>";
-echo "<td class='column100 column8' data-column='column8'>{$SR_fwd}</td>";
-echo "<td class='column100 column9' data-column='column9'>{$SR_fwd2DD}</td>";
-echo "<td class='column100 column10' data-column='column10'>{$SR_fwd2PEG}</td>";
+echo "<td class='column100 column4' data-column='column4'>{$Price_p}</td>";
+            
+echo "<td class='column100 column5' data-column='column5'>{$Rfwd_adjusted_p}</td>";
+echo "<td class='column100 column6' data-column='column6'>{$PEG_p}</td>";
+echo "<td class='column100 column7' data-column='column7'>{$PE_fwd_p}</td>";
+echo "<td class='column100 column8' data-column='column8'>{$SR_fwd_p}</td>";
+echo "<td class='column100 column9' data-column='column9'>{$SR_fwd2DD_p}</td>";
+echo "<td class='column100 column10' data-column='column10'>{$SR_fwd2PEG_p}</td>";
 
-echo "<td class='column100 column11' data-column='column11'>{$SD}</td>";
-echo "<td class='column100 column12' data-column='column12'>{$SDfwd}</td>";
-echo "<td class='column100 column13' data-column='column13'>{$MARF_fwd}</td>";
-echo "<td class='column100 column14' data-column='column14'>{$MaxDD}</td>";
-
+echo "<td class='column100 column11' data-column='column11'>{$SD_p}</td>";
+echo "<td class='column100 column12' data-column='column12'>{$SDfwd_p}</td>";
+echo "<td class='column100 column13' data-column='column13'>{$MARF_fwd_p}</td>";
+echo "<td class='column100 column14' data-column='column14'>{$MaxDD_p}</td>";
 
 
     
@@ -120,6 +215,9 @@ echo "<td class='column100 column14' data-column='column14'>{$MaxDD}</td>";
 echo "<td class='column100 column15' data-column='column15'><a href='./admin_portfolios.php?source=edit_stock&symbol={$symbol}'>Edit</a></td>";
 echo "<td class='column100 column16' data-column='column16'><a onClick=\"javascript: return confirm('Are you sure you want to delete?'); \" href='./admin_portfolios.php?delete={$symbol}'>Delete</a></td>";
 echo "</tr>";
+    
+    
+$row_num++;
 }
 
 ?>
@@ -129,6 +227,12 @@ echo "</tr>";
 				</div>				
 			</div>
 			</div>
+			
+			
+			
+			
+			
+			
 
 
 
@@ -138,12 +242,15 @@ echo "</tr>";
 </table>
 
 
+</form>
+
+
 
 
 <?php
 if(isset($_GET['delete'])){
     $the_symbol = $_GET['delete'];
-    $query = "DELETE FROM properties WHERE symbol = '{$the_symbol}'' ";
+    $query = "DELETE FROM properties WHERE symbol = '{$the_symbol}' ";
     $delete_query = mysqli_query($connection,$query);
     header("Location: admin_portfolios.php");
     

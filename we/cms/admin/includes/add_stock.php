@@ -40,7 +40,7 @@ if(isset($_POST['add_stock'])){
    
    
    <form action="" method="post" enctype="multipart/form-data">
-    
+   
     
     <div class="form-group">
         <label for="symbol"> Symbol </label>
@@ -120,7 +120,8 @@ if(isset($_POST['add_stock'])){
     
     <div class="form-group">
        <input class="btn btn-primary" type="submit" name="add_stock" value="Add Stock">
-        
     </div>
+      
+       
        
 </form>

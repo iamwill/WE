@@ -1,10 +1,12 @@
 <?php include "db.php"; ?>
-<?php session_start(); ?>
+
+
 
 
 <?php
 
 if(isset($_POST['login'])){
+    
     $username = $_POST['username'];
     $password =  $_POST['password'];
     
@@ -28,8 +30,13 @@ if(isset($_POST['login'])){
         $db_user_role = $row['user_role'];     
     }
     
-    if($username == $db_user_name && $password == $db_user_password){
+
         
+       if ($db_user_password == crypt($password, $db_user_password)){
+             // if login is successful, initialize the session
+        session_start();
+        
+        $_SESSION['loggedin'] = true;
         
         $_SESSION['user_id']=$db_user_id;
         $_SESSION['username']=$db_user_name;
@@ -38,11 +45,12 @@ if(isset($_POST['login'])){
         $_SESSION['user_role']=$db_user_role;
         
         header("Location: ../admin/index.php");
+           
         
         
     } else {
         
-         header("Locaton: ../index.php ");
+         echo "Something wrong there, check!";
         
         
     }

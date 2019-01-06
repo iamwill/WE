@@ -4,7 +4,7 @@
 $db['db_host'] = "127.0.0.1";
 $db['db_user'] = "root";
 $db['db_pass'] = "12345678";
-$db['db_name'] = "cms_class";
+$db['db_name'] = "we_cms_db";
 
 foreach($db as $key => $value){
     define(strtoupper($key),$value);

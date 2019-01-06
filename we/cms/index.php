@@ -13,6 +13,11 @@ include "includes/header.php";
     <?php
 include "includes/navigation.php";
 ?>
+    
+    <?php session_start(); ?>
+    
+    
+    
 
     <!-- Page Content -->
     <div class="container">
@@ -121,9 +126,70 @@ include "includes/navigation.php";
             </div>
 
             <!-- Blog Sidebar Widgets Column -->
-            <?php
+            
+           
+           <div class="col-md-4">
+           
+                   <!-- login in -->
+        <div class="well">
+           
+           <?php  
+           
+             if ((isset($_SESSION['loggedin'])&& $_SESSION['loggedin'] == true)){
+           
+             echo "<form action='includes/logout.php' method='post'>";
+                 
+             echo "<div class='jumbotron'>";
+             echo "  <h2>Welcome, ". $_SESSION['firstname'] . '</h2>' ;
+             echo " <p>Your A.I. portfolio manager</p>";
+             echo " <p><a class='btn btn-primary btn-lg' href='admin/index.php' role='button'>Go to Admin</a></p>";
+         
+            echo "<button class='btn btn-lg' name='logout' type='submit'> Log Out
+                    </button>
+                    ";
+            echo "</form>";
+            echo "</div>";
+
+
+                
+            }
+            
+            else{
+                
+            echo "<h4>Login</h4>";
+            echo "<form action='includes/login.php' method='post'>";
+            echo " <div class='form-group'>";
+            echo "<input name='username' type='text' class='form-control' placeholder='Enter Username'>";
+            echo "</div>";
+            echo " <div class='input-group'>";
+            echo "<input name='password' type='password' class='form-control' placeholder='Enter Password'>";
+            echo "<span class='input-group-btn'>";
+            echo "<button class='btn btn-primary' name='login' type='submit'> Submit
+                    </button>
+                    ";
+            echo "</span>";
+            echo "</div>";
+            echo "</form>";
+                
+            }
+  
+               
+               ?>
+               
+                
+        </div>
+          
+          <?php
 include "includes/sidebar.php";
 ?>
+           
+            </div>
+            
+            
+            
+            
+            
+            
             
 
         </div>

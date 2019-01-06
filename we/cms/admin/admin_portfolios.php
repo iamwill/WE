@@ -20,11 +20,8 @@
                     <div class="col-lg-12">
                       
                          <h1 class="page-header">
-                            Current Holdings 
-                            
-                            
-                            
-                            <small><?php echo $_SESSION['firstname']; ?></small>
+                            Stocks Pool
+             <small> all database</small>
                         </h1>
                                                         
               </div>
@@ -54,8 +51,8 @@
             include "./includes/plot_stock.php";
             break;
             
-            case '34';
-            echo "NICE";
+            case 'upload_stock';
+            include "./includes/upload_stock.php";
             break;
             
     
@@ -68,6 +65,8 @@
     }
 
 ?>
+   </div>
+   </div>
     
               
             </div>
